@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>MySQL学习</title>
+      <link href="/2022/07/07/MySql/"/>
+      <url>/2022/07/07/MySql/</url>
+      
+        <content type="html"><![CDATA[<p>​关系型数据库是建立在关系模型的基础上的数据库，也就是数据库由多张相互关联的二维表组成的数据库，格式一致、易于维护，使用通用的SQL语言，已于操作，数据存放在磁盘中，安全。 </p><span id="more"></span><p>​数据库（database）指存储数据的仓库，而且储存方式是有组织的，方便将来的存取，简称DB</p><p>​数据库管理系统（database management system）指的是管理数据库的大型软件，简称DBMS，管理人员通过DBMS对数据库进行操作（增删改查）</p><h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>是一门结构化查询语言，可以查询所有的关系型数据库，定义了操作关系型数据库的统一标准，但是在不同的数据库中，采用的方式可能是不同的，也就是说可能存在“方言”的现象。</p><h2 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h2><ul><li>可以单行也可以多行，但是以分号结尾，没有分号表示语句没有结束</li><li>语言不区分大小写，对于关键字，建议使用大写</li><li>注释：对于单行注释可以使用<code>--</code>也可以用MySQL特有的<code>#</code>进行注释 ，对于多行注释可以采用<code>/*注释内容*/</code>的形式进行注释</li></ul><h2 id="SQL的分类"><a href="#SQL的分类" class="headerlink" title="SQL的分类"></a>SQL的分类</h2><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207071709220.png" alt="image-20220707144955081"></p><p>DDL语言是对数据库进行操作</p><p>DML语言和DQL语言时对数据进行操作，主要实现CRUD，即创建<code>Create</code>、查询<code>Retrieve</code>、更新<code>Update</code>、删除<code>Delete</code></p><p>DCL语言是对操作数据库的人员进行操作</p><h3 id="DDL：数据定义语言"><a href="#DDL：数据定义语言" class="headerlink" title="DDL：数据定义语言"></a>DDL：数据定义语言</h3><p>data definition language，就是我们在创建表时用到的一些SQL语句，主要是用在定义表或者改变表的结构、数据类型、表之间的链接和约束等初始化操作上。</p><p><strong>对数据库的操作</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;  #查询所有数据库</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE DATABASENAME; #创建数据库</span><br><span class="line">#在无法确定数据库是否存在时，要创建数据库可以先进行一个存在性检查</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> DATABASENAME; # 在该数据库不存在的时候创建数据库</span><br><span class="line"><span class="keyword">DROP</span> DATABASE DATABASENAME; #删除数据库</span><br><span class="line">#在无法确定数据库是否存在时，要删除数据库可以先进行一个存在性检查</span><br><span class="line"><span class="keyword">DROP</span> DATABASE IF <span class="keyword">EXISTS</span> DATABASENAME; # 如果数据库存在就删除这个数据库</span><br><span class="line"><span class="keyword">SELECT</span> DATABASE(); #返回现在正在使用的数据库的名称</span><br><span class="line">USE DATABASENAME; #使用名字为DATABASENAME的数据库</span><br></pre></td></tr></table></figure><p><strong>对表操作1</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> TABLES # 查看现有的所有表的表名</span><br><span class="line"><span class="keyword">DESC</span> TABLENAME; #查看表的结构</span><br><span class="line"></span><br><span class="line"># 创建新的表 </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> NAME&#123;</span><br><span class="line">字段名<span class="number">1</span> 字段类型<span class="number">1</span>, </span><br><span class="line">字段名<span class="number">2</span> 字段类型<span class="number">2</span>,</span><br><span class="line">...</span><br><span class="line">字段名n 字段类型n</span><br><span class="line">&#125;  #注意：最后一个字段的后面不需要加,</span><br></pre></td></tr></table></figure><p>字段类型大概分为：数值型、日期型和字符串型</p><table><thead><tr><th align="center">大小</th><th align="center">描述</th><th align="left"></th><th></th></tr></thead><tbody><tr><td align="center">1 byte</td><td align="center">小整数值</td><td align="left"></td><td></td></tr><tr><td align="center">2 bytes</td><td align="center">大整数值</td><td align="left"></td><td></td></tr><tr><td align="center">3 bytes</td><td align="center">大整数值</td><td align="left"></td><td></td></tr><tr><td align="center">4 bytes</td><td align="center">大整数值</td><td align="left">age int</td><td></td></tr><tr><td align="center">8 bytes</td><td align="center">极大整数值</td><td align="left"></td><td></td></tr><tr><td align="center">4 bytes</td><td align="center">单精度浮点数值</td><td align="left"></td><td></td></tr><tr><td align="center">8 bytes</td><td align="center">双精度浮点数值</td><td align="left">score double(总长度,小数点后保留的位数) 0~100  2</td><td>score double(5,2)</td></tr><tr><td align="center"></td><td align="center">小数值</td><td align="left"></td><td></td></tr><tr><td align="center">3</td><td align="center">日期值</td><td align="left">birthday date</td><td></td></tr><tr><td align="center">3</td><td align="center">时间值或持续时间</td><td align="left"></td><td></td></tr><tr><td align="center">1</td><td align="center">年份值</td><td align="left"></td><td></td></tr><tr><td align="center">8</td><td align="center">混合日期和时间值</td><td align="left"></td><td></td></tr><tr><td align="center">4</td><td align="center">混合日期和时间值，时间戳</td><td align="left">“张三”</td><td></td></tr><tr><td align="center">0-255 bytes</td><td align="center">定长字符串</td><td align="left">name char(10)  10个字符空间   存储的性能高   浪费空间</td><td></td></tr><tr><td align="center">0-65535 bytes</td><td align="center">变长字符串</td><td align="left">name varchar(10)  2个字符空间   存储性能低   节约空间</td><td></td></tr><tr><td align="center">0-255 bytes</td><td align="center">不超过 255 个字符的二进制字符串</td><td align="left"></td><td></td></tr><tr><td align="center">0-255 bytes</td><td align="center">短文本字符串</td><td align="left"></td><td></td></tr><tr><td align="center">0-65 535 bytes</td><td align="center">二进制形式的长文本数据</td><td align="left"></td><td></td></tr><tr><td align="center">0-65 535 bytes</td><td align="center">长文本数据</td><td align="left"></td><td></td></tr><tr><td align="center">0-16 777 215  bytes</td><td align="center">二进制形式的中等长度文本数据</td><td align="left"></td><td></td></tr><tr><td align="center">0-16 777 215  bytes</td><td align="center">中等长度文本数据</td><td align="left"></td><td></td></tr><tr><td align="center">0-4 294 967  295 bytes</td><td align="center">二进制形式的极大文本数据</td><td align="left"></td><td></td></tr><tr><td align="center">0-4 294 967  295 bytes</td><td align="center">极大文本数据</td><td align="left"></td><td></td></tr></tbody></table><p><strong>对表操作2</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> TABLENAME; #删除表</span><br><span class="line">#在无法确定表是否存在时，要删除表可以先进行一个存在性检查</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> TABLENAME; #如果表存在则删除表</span><br><span class="line"></span><br><span class="line">#修改表</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLENAME RENAME <span class="keyword">TO</span> NEWTABLENAME; #更改表名</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLENAME <span class="keyword">ADD</span> 字段名 字段类型; #添加字段</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLENAME MODIFY 字段名 新数据类型; #修改字段类型为新类型</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLENAME CHANGE 字段名<span class="number">1</span> 新字段名 新字段类型; #修改字段<span class="number">1</span>为新字段和新字段类型</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TABLENAME <span class="keyword">DROP</span> 字段名; #删除字段</span><br></pre></td></tr></table></figure><h3 id="DML：数据操纵语言"><a href="#DML：数据操纵语言" class="headerlink" title="DML：数据操纵语言"></a>DML：数据操纵语言</h3><p>data Manipulation language，主要是select、update、insert和delete对数据进行增、删、改的操作。</p><p><strong>增加数据insert</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名(列名<span class="number">1</span>,列名<span class="number">2</span>,...,列名n) <span class="keyword">VALUES</span>(值<span class="number">1</span>,值<span class="number">2</span>,...,值n); #按照传递的列名赋值</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 <span class="keyword">VALUES</span>(值<span class="number">1</span>,值<span class="number">2</span>,...,值n); #为表中的所有列赋值：一整条数据</span><br><span class="line">#批量赋值</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名(列名<span class="number">1</span>,列名<span class="number">2</span>,...,列名n) <span class="keyword">VALUES</span>(值<span class="number">1</span>,值<span class="number">2</span>,...,值n),(值<span class="number">1</span>,值<span class="number">2</span>,...,值n),...,(值<span class="number">1</span>,值<span class="number">2</span>,...,值n);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 <span class="keyword">VALUES</span>(值<span class="number">1</span>,值<span class="number">2</span>,...,值n),(值<span class="number">1</span>,值<span class="number">2</span>,...,值n),...,(值<span class="number">1</span>,值<span class="number">2</span>,...,值n);</span><br></pre></td></tr></table></figure><p><strong>更新数据update</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 列名<span class="number">1</span> <span class="operator">=</span> 值<span class="number">1</span>,列名<span class="number">2</span> <span class="operator">=</span> 值<span class="number">2</span>,...,列名n <span class="operator">=</span> 值n [<span class="keyword">WHERE</span> 条件];</span><br><span class="line">#如果有<span class="keyword">WHERE</span>语句存在的话，仅仅将满足<span class="keyword">WHERE</span>语句的实例进行修改，如果没有该语句，将会修改所有实例的数据</span><br></pre></td></tr></table></figure><p><strong>删除数据delete</strong></p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><h3 id="DQL：数据查询语言"><a href="#DQL：数据查询语言" class="headerlink" title="DQL：数据查询语言"></a>DQL：数据查询语言</h3><p>data query language，基本结构是由SELECT子句，FROM子句，WHERE子句组成的查询块：<br><strong>SELECT &lt;字段名表&gt; FROM &lt;表或视图名&gt; WHERE &lt;查询条件&gt;</strong></p><h3 id="DCL：数据控制语言"><a href="#DCL：数据控制语言" class="headerlink" title="DCL：数据控制语言"></a>DCL：数据控制语言</h3><p>data control language，用来授予或回收访问数据库的某种特权，并控制数据库操纵事务发生的时间及效果，对数据库实行监视等</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>javaWeb整体介绍</title>
+      <link href="/2022/07/06/javaWeb%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2022/07/06/javaWeb%E6%95%B4%E4%BD%93%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<p>Web指万维网，能够通过浏览器访问的网站。而JavaWeb则是指用Java技术解决相关web互联网的领域技术栈</p><span id="more"></span><h2 id="一个web网站的组成成分"><a href="#一个web网站的组成成分" class="headerlink" title="一个web网站的组成成分"></a>一个web网站的组成成分</h2><p>网页、数据库（数据）、Javaweb程序</p><p>网页用来展现数据，数据库用来存储和管理数据，Javaweb程序进行逻辑处理</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> javaWeb </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javaWeb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>写在最开始</title>
+      <link href="/2022/07/05/%E5%86%99%E5%9C%A8%E5%BC%80%E5%A4%B4/"/>
+      <url>/2022/07/05/%E5%86%99%E5%9C%A8%E5%BC%80%E5%A4%B4/</url>
+      
+        <content type="html"><![CDATA[<p>​</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 感悟 </tag>
+            
+            <tag> 人生 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
