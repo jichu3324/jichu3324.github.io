@@ -29,11 +29,17 @@
 <meta property="og:site_name" content="FBB">
 <meta property="og:description" content="​	本篇内容是在基础知识上的进阶，主要是表设计的相关内容以及多表查询方式，最后简单学习下事务的相关内容">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207080705483.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207080730743.png">
+<meta property="og:image" content="http://example.com/2022/07/07/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0/MySQL高级学习.assets/image-20220708135055472.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207081549655.png">
 <meta property="article:published_time" content="2022-07-07T10:57:50.000Z">
-<meta property="article:modified_time" content="2022-07-07T11:31:22.080Z">
+<meta property="article:modified_time" content="2022-07-08T07:56:34.619Z">
 <meta property="article:author" content="冯宝宝">
 <meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="JavaWeb">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207080705483.png">
 
 <link rel="canonical" href="http://example.com/2022/07/07/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0/">
 
@@ -129,7 +135,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -221,10 +227,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-07 18:57:50 / 修改时间：19:31:22" itemprop="dateCreated datePublished" datetime="2022-07-07T18:57:50+08:00">2022-07-07</time>
+              <time title="创建时间：2022-07-07 18:57:50" itemprop="dateCreated datePublished" datetime="2022-07-07T18:57:50+08:00">2022-07-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-08 15:56:34" itemprop="dateModified" datetime="2022-07-08T15:56:34+08:00">2022-07-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -241,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>51</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -263,7 +275,137 @@
         <p>​	本篇内容是在基础知识上的进阶，主要是表设计的相关内容以及多表查询方式，最后简单学习下事务的相关内容</p>
 <span id="more"></span>
 
-<p>​	</p>
+<h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1><ul>
+<li><p>约束是作用于表中列上的规则，用于限制加入表的数据</p>
+</li>
+<li><p>约束的存在保证了数据库中数据的正确性、有效性和完整性</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207080705483.png" alt="image-20220708070537738"></p>
+<p><strong>在MySQL中不支持检查约束</strong></p>
+<p>**auto_increment **当列是数字类型且是唯一修饰，那么可以加该词修饰，当该列不给值得时候会自动添加并增长</p>
+<h2 id="非空约束"><a href="#非空约束" class="headerlink" title="非空约束"></a>非空约束</h2><p>约束的列中不能出现NULL值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#创建时添加约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">    字段<span class="number">1</span> 数据类型 <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line">    ....</span><br><span class="line">)</span><br><span class="line">#修改约束: 添加非空约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 MODIFY 字段名 数据类型 <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line">#修改约束: 删除非空约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 MODIFY 字段名 数据类型;</span><br></pre></td></tr></table></figure>
+
+<h2 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h2><p>唯一性约束：受约束的列中不能出现重复的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#创建时添加约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段<span class="number">1</span> 数据类型 <span class="keyword">UNIQUE</span> [AUTO_INCREMENT];</span><br><span class="line">)</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段<span class="number">1</span> 数据类型,</span><br><span class="line">    字段<span class="number">2</span> 数据类型,</span><br><span class="line">    ...</span><br><span class="line">    字段N 数据类型N,</span><br><span class="line">    [<span class="keyword">CONSTRAINT</span>] [约束名称] <span class="keyword">UNIQUE</span>(列名)</span><br><span class="line">);</span><br><span class="line">#修改约束: 创建后添加约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 MODIFY 字段<span class="number">1</span> 数据类型 <span class="keyword">UNIQUE</span>;</span><br><span class="line"></span><br><span class="line">#修改约束: 删除约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> INDEX 字段名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h2><p>作用相当于唯一约束和非空约束</p>
+<p>受约束的列 非空且唯一</p>
+<p><strong>一张表中只有一个主键</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 创建时添加约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 (</span><br><span class="line">	字段<span class="number">1</span> 数据类型 <span class="keyword">PRIMARY</span> KEY [AUTO_INCREMENT];</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 创建后添加主键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY(列名);</span><br><span class="line"></span><br><span class="line">#创建后删除主键</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY;</span><br></pre></td></tr></table></figure>
+
+<h2 id="默认约束"><a href="#默认约束" class="headerlink" title="默认约束"></a>默认约束</h2><p>在赋值的时候如果没有给约束的列赋值，则会提供一个默认值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#创建时添加约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">	字段<span class="number">1</span> 数据类型 <span class="keyword">DEFAULT</span> 默认值;</span><br><span class="line">)</span><br><span class="line">#创建后添加约束</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ALTER</span> 列名 <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> 默认值;</span><br><span class="line"></span><br><span class="line">#删除约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ALTER</span> 表名 <span class="keyword">DROP</span> <span class="keyword">DEFAULT</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><p>外键用来让两个表的数据之间建立链接，保证数据的一致性和完整性</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#建表时添加外键</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名 (</span><br><span class="line">	...</span><br><span class="line">    [<span class="keyword">CONSTRAINT</span>] [外键名称] <span class="keyword">FOREIGN</span> KEY(外键列名) <span class="keyword">REFERENCES</span> 主表名称(主表列名称)</span><br><span class="line">);</span><br><span class="line">#建表后添加外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 外键名称 <span class="keyword">FOREIGN</span> KEY (外键字段名称) <span class="keyword">REFERENCES</span> 主表名称(主表列名称);</span><br><span class="line"></span><br><span class="line">#删除外键</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY 外键名;</span><br><span class="line"></span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h1><p>软件研发步骤：</p>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207080730743.png" alt="image-20220708073049082"></p>
+<p>数据库设计概念：</p>
+<ul>
+<li><p>数据库设计就是根据业务系统的具体需求，结合我们所选用的DBMS，为这个业务系统构造出最优的数据存储模型。</p>
+</li>
+<li><p>建立数据库中的表结构以及表与表之间的关联关系的过程。</p>
+</li>
+<li><p>有哪些表？表里有哪些字段？表和表之间有什么关系？</p>
+</li>
+</ul>
+<p>数据库设计的步骤：</p>
+<ul>
+<li><p>需求分析（数据是什么? 数据具有哪些属性? 数据与属性的特点是什么）</p>
+</li>
+<li><p>逻辑分析（通过ER图对数据库进行逻辑建模，不需要考虑我们所选用的数据库管理系统）</p>
+</li>
+<li><p>物理设计（根据数据库自身的特点把逻辑设计转换为物理设计）</p>
+</li>
+<li><p>维护设计（1.对新的需求进行建表；2.表优化）</p>
+</li>
+</ul>
+<p>表关系：</p>
+<ul>
+<li>一对一</li>
+</ul>
+<p>如：人和身份证</p>
+<ul>
+<li>一对多</li>
+</ul>
+<p>如：部门和员工：一个部门对多个员工，一个员工对应一个部门</p>
+<ul>
+<li>多对多</li>
+</ul>
+<p>如：商品和订单：一个商品对应多个订单，一个订单含有多个商品</p>
+<h2 id="表关系之一对多"><a href="#表关系之一对多" class="headerlink" title="表关系之一对多"></a>表关系之一对多</h2><p>实例：部门和员工</p>
+<p>实现方式：在多的一方建立外键指向一的一方的主键</p>
+<h2 id="表关系之多对多"><a href="#表关系之多对多" class="headerlink" title="表关系之多对多"></a>表关系之多对多</h2><p>实例：商品和订单</p>
+<p>实现方式：建立中间表，在该中间表中至少包括两个外键，分别关联两方的主键</p>
+<h2 id="表关系之一对一"><a href="#表关系之一对一" class="headerlink" title="表关系之一对一"></a>表关系之一对一</h2><p>实例：用户和用户详情表</p>
+<p>实现方式：在任意一方加入外键，关联对方的主键，并且设计该外键为唯一</p>
+<h1 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h1><p>根据特定的连接条件从多张表中查询到需要的数据</p>
+<p>如果直接调用查询语句则会获得笛卡尔积。</p>
+<p>笛卡尔积：</p>
+<img src="MySQL高级学习.assets/image-20220708135055472.png" alt="image-20220708135055472" style="zoom:67%;" />
+
+<h2 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h2><h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><p>查询两个表交集的数据</p>
+<p>存在两种形式</p>
+<ul>
+<li>隐式内连接</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 表<span class="number">1</span>,表<span class="number">2</span> <span class="keyword">WHERE</span> 条件 # 从两个表中查询条件相同的</span><br></pre></td></tr></table></figure>
+
+<p>在查询的过程中可以给表起别名，通过别名查询相关的资料</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> t1.name, t1.age, t2.name <span class="keyword">FROM</span> student t1, teacher t2 <span class="keyword">WHERE</span> t1.teacher_id <span class="operator">=</span> t2.id;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显式内连接</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> 表<span class="number">1</span> [<span class="keyword">INNER</span>] <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件 # 从两个表中查询，两个表在条件上连接</span><br></pre></td></tr></table></figure>
+
+<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><h4 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h4><p>左侧表的所有数据和对应右侧表的符合条件的数据</p>
+<p>如果右侧没有满足条件的数据的话，那么就为补null</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询字段 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件;</span><br></pre></td></tr></table></figure>
+
+<h4 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询字段 <span class="keyword">FROM</span> 表<span class="number">1</span> <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> 表<span class="number">2</span> <span class="keyword">ON</span> 条件;</span><br></pre></td></tr></table></figure>
+
+<p>右侧表的所有数据和对应左侧表的符合条件的数据</p>
+<p>如果左侧没有满足条件的数据的话，那么就为补null</p>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>子查询就是在查询中嵌套查询</p>
+<p>嵌套的查询的结果分为三种：</p>
+<ul>
+<li>单行单列</li>
+<li>多行单列</li>
+<li>多行多列</li>
+</ul>
+<h3 id="单行单列"><a href="#单行单列" class="headerlink" title="单行单列"></a>单行单列</h3><p>单行单列时，子查询的结果是一个值，因此可以在查询中当作一个数值使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询字段 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 列名 <span class="operator">=</span> (子查询);</span><br><span class="line">#<span class="keyword">WHERE</span>后的查询条件可以根据实际情况使用,如 <span class="operator">&gt;</span>,<span class="operator">&lt;</span>,<span class="operator">&lt;=</span>,<span class="operator">&gt;=</span>等</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行单列"><a href="#多行单列" class="headerlink" title="多行单列"></a>多行单列</h3><p>多行单列时，查询后的结果是某个字段的多个值，在使用时可以用in来作为条件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询字段 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 列名 <span class="keyword">IN</span> (子查询);</span><br></pre></td></tr></table></figure>
+
+<h3 id="多行多列"><a href="#多行多列" class="headerlink" title="多行多列"></a>多行多列</h3><p>多行多列时，子查询后的结果相当于一个表格，因为该子查询可以作为一个表使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 查询字段 <span class="keyword">FROM</span> (子查询) <span class="keyword">WHERE</span> 条件列表;</span><br></pre></td></tr></table></figure>
+
+<p>同时还可以为该子查询形成的表起个别名</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>数据库的事务是一种机制，一个操作序列，包括了一系列的数据库操作命令。事务把所有的命令作为一个整体一起向系统提交或撤销操作请求，即这一组数据库命令要么同时成功，要么同时失败。</p>
+<p><strong>事务是一个不可分割的工作逻辑单元</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">START</span> TRANSACTION; #开启事务</span><br><span class="line"><span class="keyword">BEGIN</span>; #开启事务</span><br><span class="line"></span><br><span class="line"><span class="keyword">COMMIT</span>; #提交事务</span><br><span class="line"></span><br><span class="line"><span class="keyword">ROLLBACK</span>; #事务回滚</span><br></pre></td></tr></table></figure>
+
+<h2 id="事务的四大特性"><a href="#事务的四大特性" class="headerlink" title="事务的四大特性"></a>事务的四大特性</h2><ul>
+<li>原子性(A)：事务是最小单位，不可再分，要么同时成功，要么同时失败。</li>
+<li>一致性(C)：事务要求所有的DML语句操作的时候，必须使所有的数据都保持一致状态。</li>
+<li>隔离性(I)：事务A和事务B之间，操作的可见性</li>
+<li>持久性(D)：是事务的保证，事务终结的标志(内存的数据持久到硬盘文件中)，事务一旦提交或回滚，它对数据库中的数据的改变就是永久的。</li>
+</ul>
+<p><strong>MySQL中的事务默认是自动提交的</strong></p>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>隔离的四个级别：</p>
+<ul>
+<li>读未提交：read uncommitted</li>
+<li>读已提交：read committed</li>
+<li>可重复读：repeatable read</li>
+<li>串行化：serializable</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207081549655.png" alt="image-20220708154929010"></p>
 
     </div>
 
@@ -300,6 +442,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
           </div>
 
         
@@ -370,6 +513,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.1.</span> <span class="nav-text">非空约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.2.</span> <span class="nav-text">唯一约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.3.</span> <span class="nav-text">主键约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.4.</span> <span class="nav-text">默认约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.5.</span> <span class="nav-text">外键约束</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%B9%8B%E4%B8%80%E5%AF%B9%E5%A4%9A"><span class="nav-number">2.1.</span> <span class="nav-text">表关系之一对多</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%B9%8B%E5%A4%9A%E5%AF%B9%E5%A4%9A"><span class="nav-number">2.2.</span> <span class="nav-text">表关系之多对多</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%85%B3%E7%B3%BB%E4%B9%8B%E4%B8%80%E5%AF%B9%E4%B8%80"><span class="nav-number">2.3.</span> <span class="nav-text">表关系之一对一</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.</span> <span class="nav-text">多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.1.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.1.</span> <span class="nav-text">内连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.2.</span> <span class="nav-text">外连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">左外连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%B3%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">右外连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.2.</span> <span class="nav-text">子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%A1%8C%E5%8D%95%E5%88%97"><span class="nav-number">3.2.1.</span> <span class="nav-text">单行单列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%8D%95%E5%88%97"><span class="nav-number">3.2.2.</span> <span class="nav-text">多行单列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E5%A4%9A%E5%88%97"><span class="nav-number">3.2.3.</span> <span class="nav-text">多行多列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">4.1.</span> <span class="nav-text">事务的四大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-number">4.1.1.</span> <span class="nav-text">隔离性</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,7 +542,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -441,12 +585,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">6k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">6 分钟</span>
 </div>
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">FBB</a> 强力驱动</div>
 
