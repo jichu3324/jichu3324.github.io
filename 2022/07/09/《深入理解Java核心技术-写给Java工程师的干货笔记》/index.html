@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="​	通过该书的学习对基础知识有了个很好的把握，同时能够掌握在面试时的细节问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解Java核心技术---写给Java工程师的干货笔记》">
+<meta property="og:url" content="http://example.com/2022/07/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E5%86%99%E7%BB%99Java%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B9%B2%E8%B4%A7%E7%AC%94%E8%AE%B0%E3%80%8B/index.html">
+<meta property="og:site_name" content="FBB">
+<meta property="og:description" content="​	通过该书的学习对基础知识有了个很好的把握，同时能够掌握在面试时的细节问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-09T00:30:04.000Z">
+<meta property="article:modified_time" content="2022-07-10T03:51:34.061Z">
+<meta property="article:author" content="冯宝宝">
+<meta property="article:tag" content="Java基础">
+<meta property="article:tag" content="面试题">
+<meta property="article:tag" content="Java书籍">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/07/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E5%86%99%E7%BB%99Java%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B9%B2%E8%B4%A7%E7%AC%94%E8%AE%B0%E3%80%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>《深入理解Java核心技术---写给Java工程师的干货笔记》 | FBB</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/my_js/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FBB</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E5%86%99%E7%BB%99Java%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B9%B2%E8%B4%A7%E7%AC%94%E8%AE%B0%E3%80%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="冯宝宝">
+      <meta itemprop="description" content="爱情必须时时更新，生长，创造">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FBB">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《深入理解Java核心技术---写给Java工程师的干货笔记》
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-09 08:30:04" itemprop="dateCreated datePublished" datetime="2022-07-09T08:30:04+08:00">2022-07-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-10 11:51:34" itemprop="dateModified" datetime="2022-07-10T11:51:34+08:00">2022-07-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​	通过该书的学习对基础知识有了个很好的把握，同时能够掌握在面试时的细节问题</p>
+<span id="more"></span>
+
+<h1 id="什么时面向对象"><a href="#什么时面向对象" class="headerlink" title="什么时面向对象"></a>什么时面向对象</h1><h2 id="面向对象和面向过程"><a href="#面向对象和面向过程" class="headerlink" title="面向对象和面向过程"></a>面向对象和面向过程</h2><p>​	Java时一种面向对象的语言，所谓的面向对象，实际上是一种编程风格，除了面向对象，还有面向过程、指令式编程、函数式编程等，但是我们主要接触的只有前两种：面向对象编程和面向过程编程。</p>
+<h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><p>​	面向过程是一种以过程为中心的编程思想，是一种自顶向下的编程模式。</p>
+<p>​	在这个编程模式当中，问题被分解成一个个步骤，每个步骤用函数来实现，依次调用函数解决这个问题。</p>
+<p>​	面向过程的开发是具有流程化的，可以清晰的看到执行的步骤，明确知道没一步该做什么，代码的执行效率比较高。但是存在着复用性差、不易拓展、维护困难等问题</p>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>​	面向对象编程是将问题分解成一个个步骤，然后对每个步骤进行抽象，将相应的属性和方法封装字对象中，通过对象之间的组合调用解决问题。</p>
+<p>​	这种方式符合人们对现实世界的理解，同时编写的代码的可拓展性和可维护性更高</p>
+<p>​	面向对象编程具00000000002&#x3D;有三大基本特征：封装、继承和多态</p>
+<h4 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h4><h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><p>封装就是把客观事物封装成抽象的类，并且类的属性和方法只允许可信任的类和对象操作，对于不可信的类和对象则隐藏了相关的信息，防止程序中无关的部分意外的改变或者错误的使用了对象的私有部分。</p>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>继承指的是类具有这样的能力，它可以使用现有类的所有属性和方法而不需要重新编写原来类的代码，同时嗨可以拓展具有自己的属性和方法。被继承的类被称为“父类”或者“基类”，而继承的类被称为“子类”或者“派生类”</p>
+<p><strong>继承的过程是从一般到特殊的过程</strong></p>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>多态是指同一个类实例的方法在不同的情况下有着不同的表现形式。在这种情况下，有着不同内部结构（具体操作，实现的业务逻辑）的对象可以共享同一个对外的接口。</p>
+<p>常见的多态是将子类对象传入父类的引用中，当调用父类的方法的时候，通过传入的实际的子类来决定最终实现的具体的结构或者行为。</p>
+<h3 id="面向对象的五大基本原则"><a href="#面向对象的五大基本原则" class="headerlink" title="面向对象的五大基本原则"></a>面向对象的五大基本原则</h3><p>面向对象开发的好处在于易用、易拓展、易于维护，而衡量标准则是五大基本原则</p>
+<h4 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h4><p>​	一个类最好只做好一件事情，只有一个引起它变化的原因，是在高内聚、低耦合的基础上的引申。</p>
+<p>内聚：</p>
+<p>耦合：</p>
+<h4 id="开放封闭原则"><a href="#开放封闭原则" class="headerlink" title="开放封闭原则"></a>开放封闭原则</h4><h4 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h4><h4 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h4><h4 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h4><h1 id="面向对象的核心概念"><a href="#面向对象的核心概念" class="headerlink" title="面向对象的核心概念"></a>面向对象的核心概念</h1><h1 id="Java对象"><a href="#Java对象" class="headerlink" title="Java对象"></a>Java对象</h1><h1 id="平台无关性"><a href="#平台无关性" class="headerlink" title="平台无关性"></a>平台无关性</h1><h1 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h1><h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h1 id="自动拆装箱"><a href="#自动拆装箱" class="headerlink" title="自动拆装箱"></a>自动拆装箱</h1><h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h1 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h1><h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h1 id="I-x2F-O"><a href="#I-x2F-O" class="headerlink" title="I&#x2F;O"></a>I&#x2F;O</h1><h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><h1 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h1><h1 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h1><h1 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h1><h1 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h1><h1 id="常用的Java工具库"><a href="#常用的Java工具库" class="headerlink" title="常用的Java工具库"></a>常用的Java工具库</h1><h1 id="Java的新版本特性"><a href="#Java的新版本特性" class="headerlink" title="Java的新版本特性"></a>Java的新版本特性</h1>
+    </div>
+
+    
+    
+    
+    
+      <div>
+         <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------那么，到此为止吧<i class="fa fa-paw"></i>再写就不礼貌了，但还是谢谢你-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>冯宝宝
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/07/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E5%86%99%E7%BB%99Java%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B9%B2%E8%B4%A7%E7%AC%94%E8%AE%B0%E3%80%8B/" title="《深入理解Java核心技术---写给Java工程师的干货笔记》">http://example.com/2022/07/09/《深入理解Java核心技术-写给Java工程师的干货笔记》/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag"># Java基础</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
+              <a href="/tags/Java%E4%B9%A6%E7%B1%8D/" rel="tag"># Java书籍</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/07/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0/" rel="prev" title="MySQL高级学习">
+      <i class="fa fa-chevron-left"></i> MySQL高级学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/09/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0-JDBC/" rel="next" title="MySQL高级学习---JDBC">
+      MySQL高级学习---JDBC <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">什么时面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象和面向过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">面向过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.2.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">面向对象的三大特征</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%81%E8%A3%85"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E6%80%81"><span class="nav-number">1.1.2.1.3.</span> <span class="nav-text">多态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BA%94%E5%A4%A7%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.</span> <span class="nav-text">面向对象的五大基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E6%94%BE%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">开放封闭原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">里氏替换原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">依赖倒置原则</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">面向对象的核心概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.</span> <span class="nav-text">Java对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B3%E5%8F%B0%E6%97%A0%E5%85%B3%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">平台无关性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92"><span class="nav-number">5.</span> <span class="nav-text">值传递</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1"><span class="nav-number">7.</span> <span class="nav-text">自动拆装箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">8.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">9.</span> <span class="nav-text">异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB"><span class="nav-number">10.</span> <span class="nav-text">集合类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84"><span class="nav-number">11.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">12.</span> <span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE"><span class="nav-number">13.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-x2F-O"><span class="nav-number">14.</span> <span class="nav-text">I&#x2F;O</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86"><span class="nav-number">15.</span> <span class="nav-text">动态代理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3"><span class="nav-number">16.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-number">17.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-number">18.</span> <span class="nav-text">事件处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F"><span class="nav-number">19.</span> <span class="nav-text">编码方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="nav-number">20.</span> <span class="nav-text">语法糖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BigDecimal"><span class="nav-number">21.</span> <span class="nav-text">BigDecimal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84Java%E5%B7%A5%E5%85%B7%E5%BA%93"><span class="nav-number">22.</span> <span class="nav-text">常用的Java工具库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC%E7%89%B9%E6%80%A7"><span class="nav-number">23.</span> <span class="nav-text">Java的新版本特性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冯宝宝"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">冯宝宝</p>
+  <div class="site-description" itemprop="description">爱情必须时时更新，生长，创造</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+          <script async src="/js/fairyDustCursor.js"></script>
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022.07 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冯宝宝</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">10k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9 分钟</span>
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">FBB</a> 强力驱动</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

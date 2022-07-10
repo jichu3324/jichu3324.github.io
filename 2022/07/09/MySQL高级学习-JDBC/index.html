@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="​	JDBC实际上就是通过Java语言来操作关系型数据库，实际上是一组API">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL高级学习---JDBC">
+<meta property="og:url" content="http://example.com/2022/07/09/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0-JDBC/index.html">
+<meta property="og:site_name" content="FBB">
+<meta property="og:description" content="​	JDBC实际上就是通过Java语言来操作关系型数据库，实际上是一组API">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207101148869.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207090941453.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207101148693.png">
+<meta property="article:published_time" content="2022-07-09T01:20:11.000Z">
+<meta property="article:modified_time" content="2022-07-10T03:48:58.324Z">
+<meta property="article:author" content="冯宝宝">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="JavaWeb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207101148869.png">
+
+<link rel="canonical" href="http://example.com/2022/07/09/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0-JDBC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL高级学习---JDBC | FBB</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script type="text/javascript" src="/js/my_js/clicklove.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FBB</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/09/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0-JDBC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="冯宝宝">
+      <meta itemprop="description" content="爱情必须时时更新，生长，创造">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FBB">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL高级学习---JDBC
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-09 09:20:11" itemprop="dateCreated datePublished" datetime="2022-07-09T09:20:11+08:00">2022-07-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-10 11:48:58" itemprop="dateModified" datetime="2022-07-10T11:48:58+08:00">2022-07-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>​	JDBC实际上就是通过Java语言来操作关系型数据库，实际上是一组API</p>
+<span id="more"></span>
+
+<p>JDBC的全称是<strong>Java database connectivity</strong>，即Java数据库连接，同一套Java代码来操作不同的关系型数据库</p>
+<p>示例：</p>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207101148869.png" alt="image-20220709093855487"></p>
+<h1 id="JDBC快速入门"><a href="#JDBC快速入门" class="headerlink" title="JDBC快速入门"></a>JDBC快速入门</h1><p>​	定义好SQL语句，利用Java发送到数据库执行，执行后的结果返回到Java中处理</p>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207090941453.png" alt="image-20220709094150306"></p>
+<ol>
+<li><p>创建工程，导入jar包</p>
+</li>
+<li><p>注册驱动</p>
+<p>告知代码需要用那个jar包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取连接</p>
+<p>要通过Java代码发送SQL语句到MySQL服务器，需要建立Java与MySQL的连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url,usename,password);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义SQL语句</p>
+<p>定义实际要执行的语句，以字符串的形式定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;update...&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取执行SQL的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行SQL</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stmt.executeUpdate(sql);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处理返回结果</p>
+<p>在第六步中，是存在返回值的，因此可以对该返回值进行处理</p>
+</li>
+<li><p>释放资源</p>
+<p>主要释放两类资源，一个是A：建立的连接资源，另一个是B：操作对象资源，因为A先于B创建，因此在释放时要先释放B在释放A，释放方法就是调用close()就可以了。</p>
+</li>
+</ol>
+<h1 id="JDBC-API详解"><a href="#JDBC-API详解" class="headerlink" title="JDBC API详解"></a>JDBC API详解</h1><p>##DriverManager</p>
+<p>驱动管理类，注册驱动，获取数据库连接</p>
+<p>主要方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">getConnection(String url, String user, String password) </span><br><span class="line"><span class="comment">//url语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2…</span></span><br><span class="line"><span class="comment">//如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对</span></span><br><span class="line"></span><br><span class="line">试图建立一个连接到给定的数据库的网址。 </span><br><span class="line">registerDriver(Driver driver) </span><br><span class="line">注册驱动</span><br></pre></td></tr></table></figure>
+
+<p><strong>我们通过反射加载Driver类进行注册驱动。但是，实际上Driver类中存在一个静态方法，静态方法中存在一行代码是DriverManager.registerDriver来执行注册驱动的</strong></p>
+<h2 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h2><p>数据库连接对象</p>
+<p>###获取执行SQL的对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">createStatement() </span><br><span class="line"><span class="comment">//创建用于向数据库发送SQL语句的一 Statement对象。</span></span><br><span class="line">prepareStatement(String sql) </span><br><span class="line"><span class="comment">//创建预编译的执行SQL对象，防止SQL注入；创建参数化的SQL语句发送到数据库的 PreparedStatement对象。</span></span><br><span class="line">prepareCall(String sql) </span><br><span class="line"><span class="comment">//创建一个 CallableStatement对象调用数据库存储过程。</span></span><br></pre></td></tr></table></figure>
+
+<p>###管理事务</p>
+<p>SQL中的事务管理</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#开启事务</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">#提交事务</span><br><span class="line"><span class="keyword">COMMIT</span></span><br><span class="line">#回滚</span><br><span class="line"><span class="keyword">ROLLBACK</span></span><br></pre></td></tr></table></figure>
+
+<p>在JDBC中通过Connection接口中的三个方法来管理事务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开启事务</span></span><br><span class="line">setAutoCommit(boolent bool) <span class="comment">// ture为自动提交事务 false 为手动提交事务</span></span><br><span class="line"><span class="comment">//提交事务</span></span><br><span class="line">commit();</span><br><span class="line"><span class="comment">//回滚事务</span></span><br><span class="line">rollback();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><p>执行SQL语句</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">executeUpdate(String sql) </span><br><span class="line"><span class="comment">// 执行给定的SQL语句，这可能是一个 INSERT， UPDATE，或 DELETE语句或SQL语句不返回值，例如SQL DDL语句。</span></span><br><span class="line">executeQuery(String sql) </span><br><span class="line"><span class="comment">//执行给定的SQL语句，返回一个 ResultSet对象</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a>ResultSet</h3><p>结果集对象，封装的是<code>executeQuery</code>方法执行后的返回对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">boolean</span> <span class="title function_">next</span><span class="params">()</span>; <span class="comment">// 将光标向下移动，若向下移动后有数据，返回true,否则返回false</span></span><br><span class="line"></span><br><span class="line">xxx <span class="title function_">getXxx</span><span class="params">(参数)</span>; <span class="comment">// 获取数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据不同的类型，返回不同的数据</span></span><br><span class="line"><span class="comment">// 参数：int:列的编号：从1开始；String: 列的名称</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(re.nest())&#123;</span><br><span class="line">    re.getXxx(参数);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用的时候通过循环来查找</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h2><p>预编译SQL语句并执行，预防SQL注入问题</p>
+<p>SQL注入：</p>
+<p>通过操作输入来修改事先定义好的SQL语句，用以达到执行代码对服务器进行攻击的方法（通过拼字符串的形式）</p>
+<p>解决方法：</p>
+<p>在JDBC中的第五步获取SQL对象时，采用获取<code>PreparedStatement</code>对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from user where username = ? and password = ?&quot;</span>;</span><br><span class="line"><span class="comment">// sql 语句中将参数值用？替代，具体的赋值在SQL对象中操作</span></span><br><span class="line"><span class="type">PreparedStatement</span> <span class="variable">pstmt</span> <span class="operator">=</span> conn.prepareStatement(sql); <span class="comment">// 注意要将对象传入</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 赋值</span></span><br><span class="line">setXxx(参数<span class="number">1</span>，参数<span class="number">2</span>);<span class="comment">//给 ? 赋值,1，2，表示相同类型参数的位置</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行查询</span></span><br><span class="line"></span><br><span class="line">executeUpdate(); </span><br><span class="line">executeQuery();  <span class="comment">//不需要再传递sql  </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>好处：</p>
+<ul>
+<li>预编译SQL，性能更好</li>
+<li>防止SQL注入：将敏感字符进行转义</li>
+</ul>
+<p> Java执行SQL的过程：</p>
+<ol>
+<li><p>在获取PreparedStatement对象时，将sql语句发送给mysql服务器进行检查，编译（这些步骤很耗时）</p>
+</li>
+<li><p>执行时就不用再进行这些步骤了，速度更快</p>
+</li>
+<li><p>如果sql模板一样，则只需要进行一次检查、编译</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207101148693.png" alt="image-20220709221618362"></p>
+<p>PreparedStatement 预编译功能开启：useServerPrepStmts&#x3D;true，位置在url中</p>
+<h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><ul>
+<li><p>数据库连接池是个容器，负责分配、管理数据库连接(Connection)</p>
+</li>
+<li><p>它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个；</p>
+</li>
+<li><p>释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏</p>
+</li>
+</ul>
+<p>好处：</p>
+<ul>
+<li>资源重用</li>
+<li>提升系统响应速度</li>
+<li>避免数据库连接遗漏</li>
+</ul>
+<h3 id="数据库连接池实现"><a href="#数据库连接池实现" class="headerlink" title="数据库连接池实现"></a>数据库连接池实现</h3><p>标准接口：DataSource —官方(SUN) 提供的数据库连接池标准接口，由第三方组织实现此接口。功能是获取连接。</p>
+<p>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection   <span class="title function_">getConnection</span><span class="params">()</span> <span class="comment">// 取代 Connection conn = DriverManager.getConnection(url,usename,password);</span></span><br></pre></td></tr></table></figure>
+
+<p>常用数据库连接池</p>
+<ul>
+<li><p>DBCP</p>
+</li>
+<li><p>C3P0</p>
+</li>
+<li><p>Druid</p>
+</li>
+</ul>
+<p>Druid(德鲁伊)</p>
+<ul>
+<li><p>Druid连接池是阿里巴巴开源的数据库连接池项目 </p>
+</li>
+<li><p>功能强大，性能优秀，是Java语言最好的数据库连接池之一</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    
+      <div>
+         <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;">-------------那么，到此为止吧<i class="fa fa-paw"></i>再写就不礼貌了，但还是谢谢你-------------</div>
+    
+</div>
+      </div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>冯宝宝
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/07/09/MySQL%E9%AB%98%E7%BA%A7%E5%AD%A6%E4%B9%A0-JDBC/" title="MySQL高级学习---JDBC">http://example.com/2022/07/09/MySQL高级学习-JDBC/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/09/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF-%E5%86%99%E7%BB%99Java%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E5%B9%B2%E8%B4%A7%E7%AC%94%E8%AE%B0%E3%80%8B/" rel="prev" title="《深入理解Java核心技术---写给Java工程师的干货笔记》">
+      <i class="fa fa-chevron-left"></i> 《深入理解Java核心技术---写给Java工程师的干货笔记》
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDBC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">JDBC快速入门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDBC-API%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">JDBC API详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Connection"><span class="nav-number">2.1.</span> <span class="nav-text">Connection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Statement"><span class="nav-number">2.2.</span> <span class="nav-text">Statement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ResultSet"><span class="nav-number">2.2.1.</span> <span class="nav-text">ResultSet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">2.3.</span> <span class="nav-text">PreparedStatement</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.1.</span> <span class="nav-text">原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="nav-number">3.</span> <span class="nav-text">数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.0.1.</span> <span class="nav-text">数据库连接池实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="冯宝宝"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">冯宝宝</p>
+  <div class="site-description" itemprop="description">爱情必须时时更新，生长，创造</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+          <script async src="/js/fairyDustCursor.js"></script>
+        
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022.07 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冯宝宝</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">10k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9 分钟</span>
+</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">FBB</a> 强力驱动</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
