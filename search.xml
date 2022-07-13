@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>前端学习</title>
+      <link href="/2022/07/13/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2022/07/13/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<p>​前端要做的就是将产品的UI设计稿在用户终端上实现，因此可以说用户看到的所有视觉和交互都是前端的工作领域。根据这个定义，我们可以把前端的工作内容总结为根据产品的需求，配合开发和UI设计部门完成前端页面的开发，并负责前端应用的维护和优化。</p><span id="more"></span><h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML：超文本标记语言，超越了文本的限制，除了文字信息还可以包括：图片、音频、视频等等，而标记指是由标签组成的语言，所有的网页都是由HTML这门语言编写的，运行在浏览器上，HTML标签由浏览器解析，而所有的标签都是提前设定好的。</p><p><strong>可以在W3school上查看HTML以及其他前端语言的参考手册</strong></p><p>W3C组织：万维网联盟：网页应该由三部分组成</p><ul><li>结构：HTML</li><li>表现：CSS：控制页面长什么样子</li><li>行为：JavaScript ：控制网页应该出现什么交互行为</li></ul><h2 id="HTML快速入门实例"><a href="#HTML快速入门实例" class="headerlink" title="HTML快速入门实例"></a>HTML快速入门实例</h2><p>一个简单的HTML文件主要包括三个部分，即三个结构标签</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">  &lt;! -- 根标签：实现浏览器检测，告诉浏览器以下代码为HTML代码，实现内容为网页 -- &gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">         &lt;! -- 头部文件，加装资源信息 -- &gt;</span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>  <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">         &lt;! -- 网页标题 -- &gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">boby</span>&gt;</span> </span><br><span class="line">        &lt; font color = &quot;red&quot; &gt;</span><br><span class="line">            &lt;! -- 控制字体，包括大小，颜色，在标签内的字，按照设定的形式显示 -- &gt;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br><span class="line">        &lt;! -- 主体内容，正文显示的内容 -- &gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">boby</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><p>只需要新建文件，将文件后缀改为<code>.html</code>，然后打开文件，将内容复制上去，补充相关代码，双击运行。</p><p>细节：</p><ul><li>不区分大小写：但是在习惯上全部使用小写</li><li>结构比较松散，如结束标签没有写，双引号没有带，依然能够识别，但是不建议这样做</li></ul><h2 id="基本标签"><a href="#基本标签" class="headerlink" title="基本标签"></a>基本标签</h2><p>###概述</p><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207130849336.png" alt="image-20220713084932388"></p><p>###详细说明</p><h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>标题根据设定分为六级，h1最大，h6最小</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span> <span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span><span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span><span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><p>在该标签下可以定义文本的字体、颜色、 大小等等</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">face</span> = <span class="string">&quot;宋体&quot;</span> <span class="attr">color</span> =<span class="string">&quot;red&quot;</span> <span class="attr">size</span> = <span class="string">&quot;12&quot;</span> &gt;</span></span><br><span class="line">文本内容</span><br><span class="line"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="粗体、斜体、下划线"><a href="#粗体、斜体、下划线" class="headerlink" title="粗体、斜体、下划线"></a>粗体、斜体、下划线</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>粗体<span class="tag">&lt;/<span class="name">b</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span>斜体<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>加下划线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="文本居中"><a href="#文本居中" class="headerlink" title="文本居中"></a>文本居中</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="段落、换行"><a href="#段落、换行" class="headerlink" title="段落、换行"></a>段落、换行</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    成段文字</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span> 实现换行</span><br></pre></td></tr></table></figure><h4 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h4><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207130949454.png" alt="image-20220713094939759"></p><h2 id="图片、音频、视频标签"><a href="#图片、音频、视频标签" class="headerlink" title="图片、音频、视频标签"></a>图片、音频、视频标签</h2><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207130953875.png" alt="image-20220713095344791"></p><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> = <span class="string">&quot;url&quot;</span> <span class="attr">height</span> = <span class="string">&quot;10&quot;</span> <span class="attr">weight</span> = <span class="string">&quot;100 &quot;</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h4><h5 id="url：资源路径"><a href="#url：资源路径" class="headerlink" title="url：资源路径"></a>url：资源路径</h5><p>相对路径：从相对位置开始，找出相对位置关系，</p><p>绝对路径：完整的路径，从盘符如C盘、D盘开始，至文件的完整路径</p><h5 id="尺寸单位"><a href="#尺寸单位" class="headerlink" title="尺寸单位"></a>尺寸单位</h5><ol><li>px：像素：软件领域特有单位，一个点表示一个像素</li><li>百分比：占父元素的百分比</li></ol><h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span> = <span class="string">&quot;url&quot;</span> <span class="attr">controls</span> = <span class="string">&quot;controls&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure><p>目前HTML支持三种格式的音频文件：MP3、WAV、OGG</p><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span> = <span class="string">&quot;url&quot;</span> <span class="attr">controls</span> = <span class="string">&quot;controls&quot;</span> <span class="attr">width</span> = <span class="string">&quot;122&quot;</span> <span class="attr">height</span> = <span class="string">&quot;123&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure><p>目前HTML只支持三种格式的视频文件：MP4、WebM、OGG</p><h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131103517.png" alt="image-20220713110322335"></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> = <span class="string">&quot;url&quot;</span> <span class="attr">target</span> = <span class="string">&quot;_self&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure><p><code>target</code> 有两个值</p><ul><li>_self : 默认值 表示在当前页面打开</li><li>_blank : 表示在空白页打开</li></ul><h2 id="列表标签"><a href="#列表标签" class="headerlink" title="列表标签"></a>列表标签</h2><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131110158.png" alt="image-20220713111011817"></p><p>列表有两种形式：</p><ul><li>有序列表：</li></ul><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">type</span> = <span class="string">&quot;A&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure><p>type：可以用来表示</p><ul><li>无序列表</li></ul><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">   <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="表格标签"><a href="#表格标签" class="headerlink" title="表格标签"></a>表格标签</h2><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131123712.png" alt="image-20220713112311686"></p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span> = <span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>标签<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>描述<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>table<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>定义表格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>tr<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>定义行<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>td<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>定义单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>th<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>定义表头单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131137520.png" alt="image-20220713113731870"></p><h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ol><li>table</li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span> = <span class="string">&quot;1&quot;</span> <span class="attr">cellspacing</span> = <span class="string">&quot;0&quot;</span> <span class="attr">width</span> = <span class="string">&quot;11&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure><p>border: 控制表格有没有边框</p><p>cellspacing: 控制表格的单元格之间的距离</p><p>width: 控制表格宽度</p><ol start="2"><li>tr</li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">align</span> = <span class="string">&quot;center&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br></pre></td></tr></table></figure><p>align: 控制每行字居中或者其他</p><ol start="3"><li>td</li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span> = <span class="string">&quot;1&quot;</span> <span class="attr">colspan</span> = <span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure><p>rowspan : 实现横行合并单元格的效果</p><p>colapan ：实现纵向合并单元格的效果</p><h2 id="布局标签"><a href="#布局标签" class="headerlink" title="布局标签"></a>布局标签</h2><p>对页面上的标签进行合理的布局</p><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131330158.png" alt="image-20220713133057010"></p><h2 id="表单标签"><a href="#表单标签" class="headerlink" title="表单标签"></a>表单标签</h2><p>在网页中主要负责数据采集功能，采集到数据后和服务器进行交互</p><p>表单项(元素)：不同类型的 input 元素、下拉列表、文本域等</p><p><img src="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0.assets/image-20220713133239885.png" alt="image-20220713133239885"></p><h3 id="细节-1"><a href="#细节-1" class="headerlink" title="细节"></a>细节</h3><ol><li>如果想要提交表单，form标签的action属性中指向数据提交的地址，同时还要在input标签中定义name属性，实现提交</li></ol><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span> = <span class="string">&quot;url&quot;</span> <span class="attr">method</span> = <span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;text&quot;</span> <span class="attr">name</span> = <span class="string">&quot;fbq&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure><p>提交前：</p><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131520960.png" alt="image-20220713152023046"></p><p>提交后：</p><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131520706.png" alt="image-20220713152046127"></p><ol start="2"><li>method 属性：决定表单的提交方式</li></ol><ul><li>get：默认属性：请求参数会拼接在url后面，可以看到请求的参数</li><li>post：请求参数会在http请求协议的协议体中</li></ul><h2 id="表单项"><a href="#表单项" class="headerlink" title="表单项"></a>表单项</h2><ul><li>input：表单项，通过type决定输入的类型</li><li>select：下拉列表，option属性定义列表项</li><li>tsxtarea：文本域</li></ul><h4 id="input标签type属性"><a href="#input标签type属性" class="headerlink" title="input标签type属性"></a>input标签type属性</h4><p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131659280.png" alt="image-20220713165949146"></p><h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><p>一门控制网页表现得语言：层叠样式表，要与HTML代码结合使用</p><p>学习内容</p><ul><li>CSS与HTML的结合方式</li><li>如何使用CSS，CSS的选择器</li><li>CSS对应的属性</li></ul><h2 id="CSS导入方式"><a href="#CSS导入方式" class="headerlink" title="CSS导入方式"></a>CSS导入方式</h2><h3 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h3><h3 id="内部样式"><a href="#内部样式" class="headerlink" title="内部样式"></a>内部样式</h3><p>###外部样式</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> HTML </tag>
+            
+            <tag> CSS </tag>
+            
+            <tag> JS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mybatis</title>
       <link href="/2022/07/10/Mybatis/"/>
       <url>/2022/07/10/Mybatis/</url>
@@ -13,18 +42,18 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> 后端 </category>
           
-          <category> MySQL </category>
+          <category> 数据库 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> MySQL </tag>
+            <tag> Java </tag>
             
-            <tag> JavaWeb </tag>
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -42,7 +71,7 @@
       
       <categories>
           
-          <category> Java </category>
+          <category> 后端 </category>
           
       </categories>
       
@@ -50,6 +79,8 @@
         <tags>
             
             <tag> maven </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -67,18 +98,16 @@
       
       <categories>
           
-          <category> MySQL </category>
-          
-          <category> Java </category>
+          <category> 数据库 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> MySQL </tag>
+            <tag> Java </tag>
             
-            <tag> JavaWeb </tag>
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -125,16 +154,16 @@
       
       <categories>
           
-          <category> MySQL </category>
+          <category> 数据库 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> MySQL </tag>
+            <tag> Java </tag>
             
-            <tag> JavaWeb </tag>
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -152,16 +181,16 @@
       
       <categories>
           
-          <category> MySQL </category>
+          <category> 数据库 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> MySQL </tag>
+            <tag> Java </tag>
             
-            <tag> JavaWeb </tag>
+            <tag> MySQL </tag>
             
         </tags>
       
