@@ -41,8 +41,13 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131520960.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131520706.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207131659280.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140758081.png">
+<meta property="og:image" content="http://example.com/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0.assets/image-20220714080536939.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140806252.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140834313.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207141458226.png">
 <meta property="article:published_time" content="2022-07-12T23:34:49.000Z">
-<meta property="article:modified_time" content="2022-07-13T11:33:45.837Z">
+<meta property="article:modified_time" content="2022-07-14T08:43:00.256Z">
 <meta property="article:author" content="冯宝宝">
 <meta property="article:tag" content="HTML">
 <meta property="article:tag" content="CSS">
@@ -236,10 +241,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-13 07:34:49 / 修改时间：19:33:45" itemprop="dateCreated datePublished" datetime="2022-07-13T07:34:49+08:00">2022-07-13</time>
+              <time title="创建时间：2022-07-13 07:34:49" itemprop="dateCreated datePublished" datetime="2022-07-13T07:34:49+08:00">2022-07-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-14 16:43:00" itemprop="dateModified" datetime="2022-07-14T16:43:00+08:00">2022-07-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -256,14 +267,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -279,7 +290,7 @@
 <span id="more"></span>
 
 <h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p>HTML：超文本标记语言，超越了文本的限制，除了文字信息还可以包括：图片、音频、视频等等，而标记指是由标签组成的语言，所有的网页都是由HTML这门语言编写的，运行在浏览器上，HTML标签由浏览器解析，而所有的标签都是提前设定好的。</p>
-<p><strong>可以在W3school上查看HTML以及其他前端语言的参考手册</strong></p>
+<p><strong>可以在<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/">W3school</a>上查看HTML以及其他前端语言的参考手册</strong></p>
 <p>W3C组织：万维网联盟：网页应该由三部分组成</p>
 <ul>
 <li>结构：HTML</li>
@@ -408,8 +419,197 @@
 <li>如何使用CSS，CSS的选择器</li>
 <li>CSS对应的属性</li>
 </ul>
-<h2 id="CSS导入方式"><a href="#CSS导入方式" class="headerlink" title="CSS导入方式"></a>CSS导入方式</h2><h3 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h3><h3 id="内部样式"><a href="#内部样式" class="headerlink" title="内部样式"></a>内部样式</h3><p>###外部样式</p>
+<h2 id="CSS导入方式"><a href="#CSS导入方式" class="headerlink" title="CSS导入方式"></a>CSS导入方式</h2><h3 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h3><p>在标签内部使用style属性，属性值是CSS键值对</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;color: red&quot;</span>&gt;</span>Hello CSS~<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+
+
+<h3 id="内部样式"><a href="#内部样式" class="headerlink" title="内部样式"></a>内部样式</h3><p>定义<style>标签，在标签内定义css样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="language-css">   </span></span><br><span class="line"><span class="language-css">    <span class="selector-tag">div</span>&#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>: red;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>###外部样式</p>
+<p>在外部定义一个css文件，然后通过<link>标签导入文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>  <span class="attr">href</span>=<span class="string">&quot;demo.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><p>选择需要设置样式的元素（标签）</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">	color : red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分类</p>
+<ul>
+<li>元素选择器</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">元素名称&#123;</span><br><span class="line">	样式设置</span><br><span class="line">&#125;</span><br><span class="line">示例</span><br><span class="line">div&#123;</span><br><span class="line">	color:red</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>id选择器</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#id属性值&#123;</span><br><span class="line">	样式设置</span><br><span class="line">&#125;</span><br><span class="line">示例</span><br><span class="line">#name&#123; color:red;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;name&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类选择器</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.class&#123;</span><br><span class="line">	样式设置</span><br><span class="line">&#125;</span><br><span class="line">示例</span><br><span class="line">.cls&#123; color : red&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&quot;cls&quot;</span>&gt;</span></span><br><span class="line">    hello</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS属性"><a href="#CSS属性" class="headerlink" title="CSS属性"></a>CSS属性</h2><h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><p>JavaScript是一门跨平台、面向对象的脚本语言，不要经过编译，只要浏览器解释、运行即可，可以控制网页行为，能使网页可交互。</p>
+<p>与Java是完全不同的语言但是在基础语法上是类似的</p>
+<h2 id="引入方式"><a href="#引入方式" class="headerlink" title="引入方式"></a>引入方式</h2><ul>
+<li>内部脚本：将JS代码定义在HTML 文件中</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li><script>标签可以放在任何地方且可以放多个标签（推荐放在boby元素底部</li>
+</ol>
+<ul>
+<li>外部脚本：将JS代码定义在外部JS文件中，然后通过<script>标签引入到HTML文件中</li>
+</ul>
+<p>外部文件 （demo.js）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(&quot;hi&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>HTML文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&quot;demo.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p><strong>script标签不要使用自闭合，否则文件会失效</strong></p>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><h3 id="书写语法"><a href="#书写语法" class="headerlink" title="书写语法"></a>书写语法</h3><ol>
+<li>区分大小写</li>
+<li>每行结尾分号可有可无</li>
+<li>注释： 与Java一致</li>
+<li>{}大括号代表代码块</li>
+</ol>
+<h3 id="输出语句"><a href="#输出语句" class="headerlink" title="输出语句"></a>输出语句</h3><ol>
+<li>window.alert() : 弹出警告框</li>
+<li>document.write(): 写入HTML页面</li>
+<li>coonsole.log() : 写入到浏览器控制台</li>
+</ol>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>使用var关键字来保存变量</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var test = 20 ;</span><br><span class="line">test = &quot;lihua&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>JS是一门弱类型的语言，变量可以存放不同类型的值</p>
+<p>变量名规则：与Java相同</p>
+<p>var定义变量的特点：</p>
+<ol>
+<li><p>作用域：相当于全局变量</p>
+</li>
+<li><p>变量可以重复定义</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var test = 20;</span><br><span class="line">var test = 30;</span><br><span class="line">// 可以理解为后者将 前者覆盖</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>新增变量关键字<code>let</code>用来定义变量，定义的变量只在代码块范围内有效，且不允许重复定义</p>
+<p>新增关键字<code>const</code>用来定义常量，只读不可改写</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>原始类型：</p>
+<ul>
+<li>number：数字（整数、小数、NaN)</li>
+<li>string：字符、字符串，单引号双引号都可以</li>
+<li>boolean：布尔（true 和 false）</li>
+<li>null：对象为空</li>
+<li>undefined：当声明的变量未初始化时</li>
+</ul>
+<p>使用typeof（运算符）可以获得对象类型</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var test = null;</span><br><span class="line">typeof(tset); // 得到的对象为object</span><br><span class="line">// 这个JS最初设计的一个错误，但是后来沿用了下来，null被认为是object的占位符</span><br></pre></td></tr></table></figure>
+
+<p>引用类型：</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>与Java大部分相同</p>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140758081.png" alt="image-20220714075814916"></p>
+<p>重点**== 和 ===**的区别：</p>
+<p>=== 全等于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var age = 20;</span><br><span class="line">var age2 = &quot;20&quot;;</span><br><span class="line">alert(age == age2); // 返回true</span><br><span class="line">// ==在JS中会先进行类型转换，然后比较值是否相等</span><br><span class="line">alert(age === age2); // 返回false</span><br><span class="line">// ===不会进行类型转化，而是比较类型是否相同，不同的话直接返回false</span><br></pre></td></tr></table></figure>
+
+<p>类型转换：</p>
+<ul>
+<li><p>其他类型转number：</p>
+<ol>
+<li><p>string:按照字符串的字面值转为数字，如果字面值不是数字，则转为NaN.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age = +&quot;abc&quot;;</span><br><span class="line">alert(age);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0.assets/image-20220714080536939.png" alt="image-20220714080536939"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age = +&quot;20&quot;;</span><br><span class="line">alert(age + 1);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140806252.png" alt="image-20220714080647055"></p>
+<p>JS提供了parseInt（）方法实现字符串和数字之间的转换</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age = &quot;20&quot;;</span><br><span class="line">alert(parseInt(age) + 1);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>boolean: true = 1 false = 0</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var age = +true;</span><br><span class="line">alert(age);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207140834313.png" alt="image-20220714083418561"></p>
+</li>
+<li><p>其他类型转boolean：可以简化书写</p>
+<ol>
+<li>number：0 和 NaN转为 false ，其他转为 1</li>
+<li>string：空字符串转为false ，其他转为true</li>
+<li>null：false</li>
+<li>undefined：false</li>
+</ol>
+</li>
+</ul>
+<h3 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h3><p>与Java一致</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>通过function关键字定义函数</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function functionName(参数列表)&#123;</span><br><span class="line">	函数主体</span><br><span class="line">&#125;</span><br><span class="line">// 形参不需要写数据类型</span><br><span class="line">// 不需要定义返回值类型 直接return</span><br><span class="line">// 调用时直接方法名+实参</span><br><span class="line">// 第二种格式</span><br><span class="line">var functionName = function(参数列表)&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br><span class="line">// 函数调用可以传递任意个数的参数，多余的参数没有接收，也就是不参与函数主体</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用对象"><a href="#常用对象" class="headerlink" title="常用对象"></a>常用对象</h2><p>基础对象；BOM对象；DOM对象</p>
+<h3 id="Array对象"><a href="#Array对象" class="headerlink" title="Array对象"></a>Array对象</h3><p>Array用于定义数组对象</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 定义方式</span><br><span class="line">var 变量名 = new Array[元素列表];</span><br><span class="line">var 变量名= [元素列表];</span><br><span class="line">var arr = new Array[1,2,3];</span><br><span class="line">var arr1 = [1,2,3];</span><br><span class="line"></span><br><span class="line">// 数组访问</span><br><span class="line">arr[1];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Array的特点：类似于Java中的集合，变长、变类型</p>
+<p>如果没有给 初始化值，那么默认为undefined</p>
+<p>属性：length 数组长度，数组中元素的个数</p>
+<p>方法：</p>
+<ul>
+<li>push：添加</li>
+<li>splice：删除，两个参数：start，起始位置；number，删除元素个数</li>
+</ul>
+<h3 id="String对象"><a href="#String对象" class="headerlink" title="String对象"></a>String对象</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 定义方式</span><br><span class="line">var str = new String(&quot;string&quot;);</span><br><span class="line">var str = &quot;string&quot;;</span><br><span class="line">属性：</span><br><span class="line">length : 字符串长度</span><br><span class="line">方法：</span><br><span class="line">charAt(); 返回指定位置的符好</span><br><span class="line">indexOf(); 检索字符串，返回字符串第一次出现的位置</span><br><span class="line">trim();取出字符串前后两端的字符</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义对象"><a href="#自定义对象" class="headerlink" title="自定义对象"></a>自定义对象</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var 对象名称 = &#123;</span><br><span class="line">	属性名称:属性值,    // 用逗号隔开多个属性键值对</span><br><span class="line">	属性名称1:属性值</span><br><span class="line">	函数名称:function(形参列表)&#123;</span><br><span class="line">					函数主体</span><br><span class="line">						&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###RegExp对象</p>
+<h2 id="BOM：浏览器对象模型"><a href="#BOM：浏览器对象模型" class="headerlink" title="BOM：浏览器对象模型"></a>BOM：浏览器对象模型</h2><p>将JavaScript的各个组成部分封装成对象</p>
+<h3 id="window对象：浏览器窗口"><a href="#window对象：浏览器窗口" class="headerlink" title="window对象：浏览器窗口"></a>window对象：浏览器窗口</h3><p>使用方式：直接使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.alert();</span><br></pre></td></tr></table></figure>
+
+<p>属性：可以获得其他四个对象</p>
+<p>方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 谈框方法</span><br><span class="line">alert();// 弹出警告框</span><br><span class="line">confirm(); // 弹出带有确定和取消的框，防止用户误操作，根据选择结果返回true和false</span><br><span class="line">// 定时器方法 每个一段时间执行一次代码</span><br><span class="line">setInterval(); // 以指定的周期来执行代码</span><br><span class="line">setTimeout(); // 在一段时间后执行</span><br><span class="line">// 参数1.函数2.毫秒值</span><br></pre></td></tr></table></figure>
+
+<h3 id="Navigator对象：浏览器对象"><a href="#Navigator对象：浏览器对象" class="headerlink" title="Navigator对象：浏览器对象"></a>Navigator对象：浏览器对象</h3><p>包含浏览器信息：名称、版本</p>
+<h3 id="Screen对象：显示器屏幕"><a href="#Screen对象：显示器屏幕" class="headerlink" title="Screen对象：显示器屏幕"></a>Screen对象：显示器屏幕</h3><p>显示器信息：宽、高等</p>
+<h3 id="History对象：历史记录对象"><a href="#History对象：历史记录对象" class="headerlink" title="History对象：历史记录对象"></a>History对象：历史记录对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.history()</span><br><span class="line">方法：</span><br><span class="line">back(); 后退到url</span><br><span class="line">forward(); 前进到url</span><br></pre></td></tr></table></figure>
+
+<h3 id="Location对象：地址栏对象"><a href="#Location对象：地址栏对象" class="headerlink" title="Location对象：地址栏对象"></a>Location对象：地址栏对象</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.location();</span><br><span class="line">location.方法();</span><br><span class="line"></span><br><span class="line">属性：</span><br><span class="line">href:url地址</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>##DOM：文档对象模型</p>
+<p>将标记语言的各个组成部分封装成对象</p>
+<p><img src="https://raw.githubusercontent.com/jichu3324/picture/main/img/202207141458226.png" alt="image-20220714145826833"></p>
+<ul>
+<li><p>改变 HTML 元素的内容</p>
+</li>
+<li><p>改变 HTML 元素的样式（CSS）</p>
+</li>
+<li><p>对 HTML DOM 事件作出反应</p>
+</li>
+<li><p>添加和删除 HTML 元素</p>
+</li>
+</ul>
+<h3 id="Document：整个文档对象"><a href="#Document：整个文档对象" class="headerlink" title="Document：整个文档对象"></a>Document：整个文档对象</h3><h3 id="Element：元素对象"><a href="#Element：元素对象" class="headerlink" title="Element：元素对象"></a>Element：元素对象</h3><p>获取：使用Document对象的方法来获取</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getElebmentById(); // 根据id属性值获取，返回一个Element对象</span><br><span class="line">getElebmentsByTagName(); //根据标签名称获取，返回Element对象数组</span><br><span class="line">getElebmentsByName(); // 根据name属性值获取，返回Element对象数组</span><br><span class="line">getElebmentsByClassName(); // 根据class属性值获取，返回Element对象数组</span><br></pre></td></tr></table></figure>
+
+<p>常见 HTML Element对象的使用:</p>
+<p>###Attribute：属性对象</p>
+<h3 id="Text：文本对象"><a href="#Text：文本对象" class="headerlink" title="Text：文本对象"></a>Text：文本对象</h3><p>###Comment：注释对象</p>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><p>事件：就是发生在HTML上的事情</p>
+<p>事件监听就是指JavaScript可以在事件被侦测到的时候执行一些代码</p>
+<h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><ol>
+<li><p>html标签中的事件属性来绑定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;butten&quot;</span> <span class="attr">onclick</span> = <span class="string">&quot;on()&quot;</span>&gt;</span></span><br><span class="line">function on&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM元素来控制</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span> = <span class="string">&quot;button&quot;</span> <span class="attr">id</span> = <span class="string">&quot;btn&quot;</span> &gt;</span></span><br><span class="line">document.getElementById(&quot;btn&quot;).onclick = function ()&#123;</span><br><span class="line">	alert(&quot;我被点了&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="常见事件"><a href="#常见事件" class="headerlink" title="常见事件"></a>常见事件</h3>
     </div>
 
     
@@ -458,7 +658,10 @@
     <a href="/2022/07/10/Mybatis/" rel="prev" title="Mybatis">
       <i class="fa fa-chevron-left"></i> Mybatis
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/15/Web%E6%A0%B8%E5%BF%83/" rel="next" title="Web核心">
+      Web核心 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -589,12 +792,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">17k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9 分钟</span>
+    <span title="站点阅读时长">15 分钟</span>
 </div>
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">FBB</a> 强力驱动</div>
 
